@@ -21,22 +21,23 @@ const cardValues = [
 
 function App() {
   const [cards, setCards] = useState([]);
-
   // picks two cards out of the "deck"
   const pickCards = () => {
-    const cards = []
-    cards.push(cardValues[Math.floor((Math.random() * 13))]);
-    cards.push(cardValues[Math.floor((Math.random() * 13))]);
-    // check if cards match, if they do then run the function again.
-    const cardKeys = cards.map(card=> {
-      for(var i in card){
-        return i
+    function getTwoNums() {
+      let numOne = Math.floor((Math.random() * 13))
+      let numTwo = Math.floor((Math.random() * 13))
+  
+      if (numOne === numTwo) {
+        return getTwoNums();
       }
-    })
-    if (cardKeys[0] === cardKeys[1]){
-      console.log('these match')
-      cards[1] = cardValues[Math.floor((Math.random() * 13))];
+      return [numOne, numTwo]
     }
+    let twoNums = getTwoNums();
+    console.log(twoNums)
+    const cards = [];
+    cards.push(cardValues[twoNums[0]]);
+    cards.push(cardValues[twoNums[1]]);
+
     setCards(cards)
   }
 

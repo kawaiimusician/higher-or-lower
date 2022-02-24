@@ -5,7 +5,7 @@ function Cards({ cards }) {
     }
   })
 
-  console.log(cardKeys)
+  // console.log(cardKeys)
 
   return(
     <div>
