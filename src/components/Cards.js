@@ -9,8 +9,15 @@ function Cards({ cards }) {
 
   return(
     <div>
-      <p>{cardKeys[0]}</p>
-      <p>{cardKeys[1]}</p>
+
+      <div className="singleCard cardOne">
+        <p>{cardKeys[0]}</p>
+      </div>
+
+      <div className="singleCard cardTwo">
+        <p>{cardKeys[1]}</p>
+      </div>
+      
     </div>
   )
 }
