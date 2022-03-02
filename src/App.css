@@ -1,0 +1,15 @@
+.card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardOne {
+  background-color: blue;
+  border: 2px solid red;
+}
+
+.cardTwo {
+  background-color: chartreuse;
+  border: 2px solid red;
+}
