@@ -22,6 +22,7 @@ const cardValues = [
 function App() {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState([]);
+  const [flipped, setFlipped] = useState(false);
 
   // picks two cards out of the "deck"
   const pickCards = () => {
@@ -44,6 +45,9 @@ function App() {
     console.log(cards)
   };
 
+  const handleTheChoice = () => {
+    setFlipped(true)
+  }
 
   // start game immediately
   useEffect(()=> {
@@ -54,13 +58,14 @@ function App() {
   return (
     <div className="App">
       <h1>Higher or Lower?</h1>
+      
       <div>
         <button>Higher</button>
         <button>Lower</button>
       </div>
 
       <div>
-        {cards.length >=1 && <TwoCards cards={cards} />} 
+        {cards.length >=1 && <TwoCards cards={cards} flipped={ flipped } />} 
       </div>
 
       <button>New Game</button>
