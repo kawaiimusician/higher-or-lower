@@ -1,0 +1,40 @@
+.cardOne {
+  margin-right: 20px;
+}
+
+.cardTwo {
+  position: relative;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+/* Front of card - picture */
+.cardTwo .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+/* Back of card - cover */
+.cardTwo .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+/* fixes bug where you can flip both the card and matching card if you spam click a card */
+.flipped {
+  pointer-events: none;
+}
