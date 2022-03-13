@@ -33,8 +33,3 @@ img {
   transform: rotateY(90deg);
   transition-delay: 0s;
 }
-
-/* fixes bug where you can flip both the card and matching card if you spam click a card */
-.flipped {
-  pointer-events: none;
-}

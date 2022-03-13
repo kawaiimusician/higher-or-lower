@@ -1,7 +1,7 @@
 import './TwoCards.css'
 
 
-function TwoCards({ cards, flipped, clickHandler }) {
+function TwoCards({ cards, flipped }) {
 
   return (
     <div className="card-grid">
