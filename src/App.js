@@ -4,7 +4,7 @@ import TwoCards from './components/TwoCards';
 
 const cardValues = [
   // name on card : value of card
-  { 'src': '/img/A.png', 'name': 'Ace', 'value': 14 },
+  { 'src': '/img/A.png', 'name': 'Ace', 'value': 1 },
   { 'src': '/img/2.png', 'name': '2', 'value': 2 },
   { 'src': '/img/3.png', 'name': '3', 'value': 3 },
   { 'src': '/img/4.png', 'name': '4', 'value': 4 },
@@ -21,15 +21,17 @@ const cardValues = [
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [score, setScore] = useState([]);
+  const [score, setScore] = useState({});
   const [flipped, setFlipped] = useState(false);
+  const [answer, setAnswer] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   // picks two cards out of the "deck"
   const pickCards = () => {
     function getTwoNums() {
       let numOne = Math.floor((Math.random() * 13))
       let numTwo = Math.floor((Math.random() * 13))
-  
+
       if (numOne === numTwo) {
         return getTwoNums();
       }
@@ -41,34 +43,93 @@ function App() {
     cards.push(cardValues[twoNums[0]]);
     cards.push(cardValues[twoNums[1]]);
 
-    setCards(cards)
-    console.log(cards)
+    setCards(cards);
+    findAnswer(cards);
+    setDisabled(false)
   };
 
-  const handleTheChoice = () => {
+  // figure out the answer and set it to the answer state
+  const findAnswer = (cards) => {
+    console.log(cards)
+    if (cards[0].value > cards[1].value) {
+      setAnswer("lower")
+    } else {
+      setAnswer("higher")
+    }
+  }
+
+  const handleHigherButton = () => {
+    setDisabled(true)
+    setFlipped(true);
+    if (answer === 'higher') {
+      let newScore = { ...score }
+      newScore.wins++
+      setScore(newScore);
+    } else {
+      let newScore = { ...score }
+      newScore.losses++
+      setScore(newScore);
+    }
+    setTimeout(() => {
+      setFlipped(false);
+    }, 2000)
+    setTimeout(() => {
+      pickCards();
+    }, 3000)
+  }
+
+  const handleLowerButton = () => {
+    setDisabled(true)
     setFlipped(true)
+    if (answer === 'lower') {
+      let newScore = { ...score }
+      newScore.wins++
+      setScore(newScore);
+    } else {
+      let newScore = { ...score }
+      newScore.losses++
+      setScore(newScore);
+    }
+    setTimeout(() => {
+      setFlipped(false);
+    }, 2000)
+    setTimeout(() => {
+      pickCards();
+    }, 3000)
+  }
+
+  const newGame = () => {
+    pickCards();
+    setScore({ 'wins': 0, 'losses': 0 });
   }
 
   // start game immediately
-  useEffect(()=> {
+  useEffect(() => {
     pickCards();
-    setScore([{'win': 0, 'lose': 0}])
-  },[])
+    setScore({ 'wins': 0, 'losses': 0 });
+  }, [])
+
+  console.log(answer)
 
   return (
     <div className="App">
       <h1>Higher or Lower?</h1>
-      
-      <div>
-        <button>Higher</button>
-        <button>Lower</button>
+
+      <div className='higherOrLowerButtons'>
+        <button disabled={disabled} className='higherButton' onClick={handleHigherButton}>Higher</button>
+        <button disabled={disabled} className='lowerButton' onClick={handleLowerButton}>Lower</button>
       </div>
 
       <div>
-        {cards.length >=1 && <TwoCards cards={cards} flipped={ flipped } />} 
+        {cards.length >= 1 && <TwoCards cards={cards} flipped={flipped} />}
       </div>
 
-      <button>New Game</button>
+      <div className='score'>
+        <p>Wins: {score.wins} </p>
+        <p>Losses: {score.losses}</p>
+      </div>
+
+      <button onClick={newGame}>New Game</button>
     </div>
   );
 }
