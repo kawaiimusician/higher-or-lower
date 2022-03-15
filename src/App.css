@@ -20,5 +20,29 @@ button:hover {
 }
 
 .higherOrLowerButtons {
-  margin-bottom: 10px;
+  margin: 20px 0;
+}
+
+.textInstructions {
+  width: 50%;
+  margin: auto;
+}
+
+a:link {
+  color: rgb(233, 197, 247);
+}
+
+a:visited {
+  color: rgb(233, 197, 247);
+}
+
+a:hover {
+  color: rgb(186, 137, 206);
+}
+
+.githubLink {
+  display: flex;
+  justify-content: end;
+  font-size: 20px;
+  padding-right: 20px;
 }

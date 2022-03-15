@@ -1,5 +1,6 @@
 .cardOne {
   margin-right: 20px;
+  position: relative;
 }
 
 .cardTwo {
@@ -12,6 +13,12 @@ img {
 }
 
 /* Front of card - picture */
+.cardOne .front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+}
+
 .cardTwo .front {
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
@@ -24,6 +31,11 @@ img {
 }
 
 /* Back of card - cover */
+.cardOne .back {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
 .cardTwo .back {
   transition: all ease-in 0.2s;
   transition-delay: 0.2s;

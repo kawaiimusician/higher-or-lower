@@ -23,6 +23,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState({});
   const [flipped, setFlipped] = useState(false);
+  const [firstCardFlipped, setFirstFlip] = useState(false)
   const [answer, setAnswer] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
@@ -43,6 +44,7 @@ function App() {
     cards.push(cardValues[twoNums[0]]);
     cards.push(cardValues[twoNums[1]]);
 
+    setFirstFlip(false)
     setCards(cards);
     findAnswer(cards);
     setDisabled(false)
@@ -73,6 +75,9 @@ function App() {
     setTimeout(() => {
       setFlipped(false);
     }, 2000)
+    setTimeout(()=> {
+      setFirstFlip(true)
+    }, 2500)
     setTimeout(() => {
       pickCards();
     }, 3000)
@@ -93,7 +98,11 @@ function App() {
     setTimeout(() => {
       setFlipped(false);
     }, 2000)
+    setTimeout(()=> {
+      setFirstFlip(true)
+    }, 2500)
     setTimeout(() => {
+      setFirstFlip(true)
       pickCards();
     }, 3000)
   }
@@ -109,11 +118,12 @@ function App() {
     setScore({ 'wins': 0, 'losses': 0 });
   }, [])
 
-  console.log(answer)
+  // console.log(answer)
 
   return (
     <div className="App">
       <h1>Higher or Lower?</h1>
+      <p className='textInstructions'>Pick if you think the hidden card will be higher or lower than the card on the left! Aces count as lower than 2 in this case.</p>
 
       <div className='higherOrLowerButtons'>
         <button disabled={disabled} className='higherButton' onClick={handleHigherButton}>Higher</button>
@@ -121,7 +131,7 @@ function App() {
       </div>
 
       <div>
-        {cards.length >= 1 && <TwoCards cards={cards} flipped={flipped} />}
+        {cards.length >= 1 && <TwoCards cards={cards} flipped={flipped} firstCardFlipped={firstCardFlipped} />}
       </div>
 
       <div className='score'>
@@ -130,6 +140,7 @@ function App() {
       </div>
 
       <button onClick={newGame}>New Game</button>
+      <p className='githubLink'>See this project on&nbsp;<a href='https://github.com/kawaiimusician/higher-or-lower' target='_blank'>Github</a>!</p>
     </div>
   );
 }

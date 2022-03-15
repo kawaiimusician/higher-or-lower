@@ -1,13 +1,20 @@
 import './TwoCards.css'
 
 
-function TwoCards({ cards, flipped }) {
+function TwoCards({ cards, flipped, firstCardFlipped }) {
 
   return (
     <div className="card-grid">
 
       <div className='cardOne'>
-        <img src={cards[0].src} alt={cards[0].value} />
+        <div className={firstCardFlipped ? "" : "flipped"}>
+          <img src={cards[0].src} alt={cards[0].value} className="front" />
+          <img
+              src="/img/cover.png" 
+              alt="card cover" 
+              className="back" 
+            />
+        </div>
       </div>
 
       <div className='cardTwo'>
