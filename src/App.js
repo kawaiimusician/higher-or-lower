@@ -52,7 +52,7 @@ function App() {
 
   // figure out the answer and set it to the answer state
   const findAnswer = (cards) => {
-    console.log(cards)
+    // console.log(cards)
     if (cards[0].value > cards[1].value) {
       setAnswer("lower")
     } else {
