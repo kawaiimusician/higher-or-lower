@@ -1,5 +1,5 @@
 # Higher or Lower?
-This is a simple higher or lower card game I created using what I learned from the [Magic Memory](https://github.com/kawaiimusician/magic-memory) app I created. I deployed the game using heroku [here](https://rebeccas-higher-or-lower.herokuapp.com/) so give it a click if you want to try it out!
+This is a simple higher or lower card game I created using what I learned from the [Magic Memory](https://github.com/kawaiimusician/magic-memory) app I created. 
 
 During this project I attempted to utilize the github branches however since it was a relatively small one page project, there wasn't much to put into branches. I did get some practice with merging branches though which was helpful. 
 
